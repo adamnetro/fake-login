@@ -15,7 +15,7 @@ fetch('/show', {
 }).then(res => res.json())
     .then(res => {
         if(!res.data) return alert(res.message)
-        show.innerText = JSON.stringify(res.data)
+        show.innerText = res.data
     }
 )
     .catch(res => alert(res.message))

@@ -54,7 +54,7 @@ app.post('/show', (req, res) => {
 
         res.json({
             title: "Success",
-            data: JSON.parse(data)
+            data: data
         })
 
     } catch (e) {
