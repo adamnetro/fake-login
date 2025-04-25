@@ -6,7 +6,7 @@ const data = {
     password: input
 }
 
-fetch('http://localhost:4000/show', {
+fetch('/show', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

@@ -8,7 +8,7 @@ loginBtn.addEventListener('click', () => {
             email: email.value,
             password: password.value
         }
-        fetch('http://localhost:4000/login-info', {
+        fetch('/login-info', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
