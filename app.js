@@ -2,14 +2,12 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const fs = require('fs')
-const { execSync } = require('child_process')
 const logger = require('morgan')
-const { PassThrough } = require('stream')
 
 const port = 4000
 
 app.listen(port, () => {
-    console.log('server work')
+    console.log('server work\nopen link: http://localhost:4000/')
 })
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -30,7 +28,7 @@ app.post('/login-info', (req, res) => {
 
         res.json({
             title: "Success hack",
-            message: "Sorry, incorrect password or email"
+            message: "An error occurred during registration. Please try again later"
         })
     } catch (e) {
         res.json({
